@@ -14,12 +14,25 @@ server.get("/", (req, res) => {
   res.send("Server Online!");
 });
 
+server.get("/sendEmail", (req, res) => {
+  const { to, from, subject, html } = req.body;
+
+  const msg = {
+    to: to,
+    from: from,
+    subject: subject,
+    html: html,
+  };
+
+  sgMail.send(msg).then(msg) => console.log(html);
+});
+
 server.post("/sendEmail", (req, res) => {
   const msg = {
     to: "epicapis+1@latoniamertica.dev", //TODO switch to req.body from input on frontend
     from: "epicapis@latoniamertica.dev",
     subject: "Your EPIC API Selections",
-    html: "Thank you for visiting Epic Apis. Selections you submitted are outlined below:",
+    html: `Thank you for visiting Epic Apis. Selections you submitted are outlined below:`,
   };
   (async () => {
     try {
@@ -36,5 +49,7 @@ server.post("/sendEmail", (req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log("Running!");
+  console.log("Running On Port " + PORT);
 });
+
+module.exports = server;
