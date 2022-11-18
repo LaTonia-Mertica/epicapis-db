@@ -1,6 +1,9 @@
 # **EPIC APIS DATABASE**
 
+##### [epic apis summary](epic-apis-summary.pdf)
+
 ##### [frontend github repo](https://github.com/LaTonia-Mertica/epicapis)
+
 ##### [backend github repo](https://github.com/LaTonia-Mertica/epicapis-db)
 
 <br>
