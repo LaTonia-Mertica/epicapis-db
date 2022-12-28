@@ -2,6 +2,8 @@
 
 ##### [epic apis summary](epic-apis-summary.pdf)
 
+##### [epic apis data flow](epicapis-dfd.pdf)
+
 ##### [frontend github repo](https://github.com/LaTonia-Mertica/epicapis)
 
 ##### [backend github repo](https://github.com/LaTonia-Mertica/epicapis-db)
