@@ -11,6 +11,15 @@ const apiKey = require("./sendgridkey");
 const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(apiKey);
 
+// ADD ATTACHMENT(S) TO EMAIL
+const fs = require("fs");
+summaryPath = `epic-apis-summary.pdf`;
+summaryPdf = fs.readFileSync(summaryPath).toString("base64");
+dfdPath = `epicapis-dfd.pdf`;
+dfdPdf = fs.readFileSync(dfdPath).toString("base64");
+tryPath = `TRY.pdf`;
+tryPdf = fs.readFileSync(tryPath).toString("base64");
+
 let PORT = 3001;
 
 server.get("/", (req, res) => {
@@ -18,18 +27,18 @@ server.get("/", (req, res) => {
 });
 
 server.post("/sendEmail", (req, res) => {
-  let html = `<i>Thank you for visiting Epic Apis. Selections you submitted are below</i>:<br>`;
+  let html = `<i>Thank you for visiting</i>&nbsp;<strong>EPIC APIS</strong>.&nbsp;<i>Selections submitted are below</i>:<br>`;
 
   if (req.body.selections.beautifulEntry) {
     html += `<br><br><strong>Beautiful Code: </strong> ${req.body.selections.beautifulEntry.beautifulEntry}<br>`;
   } else {
-    html += `<br><strong>Beautiful Code: </strong>Access the 'Beautiful Code' modal at Epic Apis online and add your own definition (or adopt the default definition).<br>`;
+    html += `<br><strong>Beautiful Code: </strong>Access the 'Beautiful Code' modal at Epic Apis online and add your own definition (<strong>note:</strong> you may adopt or adapt the default definition).<br>`;
   }
 
   if (req.body.selections.dangerousEntry) {
     html += `<br><strong>Dangerous Code: </strong> ${req.body.selections.dangerousEntry.dangerousEntry}<br><br>`;
   } else {
-    html += `<br><strong>Dangerous Code: </strong>Access the 'Dangerous Code' modal at Epic Apis online and add your own definition (or adopt the default definition).<br>`;
+    html += `<br><strong>Dangerous Code: </strong>Access the 'Dangerous Code' modal at Epic Apis online and add your own definition (<strong>note:</strong> you may adopt or adapt the default definition).<br>`;
   }
 
   if (req.body.selections.badassestSelection) {
@@ -121,11 +130,38 @@ server.post("/sendEmail", (req, res) => {
     html += `<br><strong>Sexiest Alter Ego: </strong><br>&emsp; - <i><strong>Female</strong></i>: ${req.body.selections.sexiestSelections.sexiestFSelection}<br>&emsp; - <i><strong>Male</strong></i>: ${req.body.selections.sexiestSelections.sexiestMSelection}<br>&emsp; - <i><strong>Non Binary</strong></i>: ${req.body.selections.sexiestSelections.sexiestNSelection}`;
   }
 
+  if (html) {
+    html += `<br><br><i>Noteworthy features of</i>&nbsp;<strong>EPIC APIS</strong>&nbsp;<i>are accessible, for your convenience, per <strong>1)</strong> attachment to this email and <strong>2)</strong> Github via link below</i>:<br><br>
+    &emsp; - <a href="https://github.com/LaTonia-Mertica/epicapis-db/blob/8cc3c4a86c1e82b8820450c75c8812725f7b675a/epic-apis-summary.pdf" style="text-decoration: none">Summary</a>, detailing the vision and journey behind the ambitious creation of EA<br>
+    &emsp; - <a href="https://github.com/LaTonia-Mertica/epicapis-db/blob/518bd74acb66e07acd52b4f1db377177b8f74cb9/epicapis-dfd.pdf" style="text-decoration: none">Data Flow</a>, outlining access, relationships between, and user interactions<br>
+    &emsp; - <a href="https://github.com/LaTonia-Mertica/epicapis-db/blob/a611e94bc635b1cdfddb259b75ff7c137b024e4e/TRY.pdf" style="text-decoration: none">TRY</a> (an invite), debating possibilities and reasons to embrace code as a culture<br>`;
+  }
+
   const msg = {
     to: req.body.email,
     from: "epicapis@latoniamertica.dev",
-    subject: "Toss 🎊 Confetti 🎊 Time: Your EPIC APIS Selections Arrived 🎉",
+    subject: "Toss 🎊 Confetti 🎊 Time: EPIC APIS Selections Await 🎉",
     html,
+    attachments: [
+      {
+        content: summaryPdf,
+        filename: "epic-apis-summary.pdf",
+        type: "application/pdf",
+        disposition: "attachment",
+      },
+      {
+        content: dfdPdf,
+        filename: "epicapis-dfd.pdf",
+        type: "application/pdf",
+        disposition: "attachment",
+      },
+      {
+        content: tryPdf,
+        filename: "try.pdf",
+        type: "application/pdf",
+        disposition: "attachment",
+      },
+    ],
   };
 
   (async () => {
