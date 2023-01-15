@@ -78,4 +78,36 @@ to pass the port directly simply do not assign the port to a variable. instead, 
 
 ### **WIRING BACKEND TO FRONTEND**
 
+<br>
+
 ### **BASIC STRUCTURE: ACCESS DATA TO INCLUDE IN EMAIL API SUBMISSION**
+
+<br>
+
+### **BASIC SENDGRID FEATURES**
+
+- [BASE64](https://www.w3docs.com/tools/image-base64) is the required format for images included in the email api<br>
+
+- arrange a file system to include attachments in the email api<br>
+  **1)** `const fs = require("fs");`<br>
+  **2)** declare variable assigned to path to file attaching<br>
+  **3)** declare variable assigned to `fs.readFileSync(step 2 variable here).toString("base64");`<br>
+
+  ##### **note:** repeat steps 2-3 for each file being attached
+
+  <br>
+
+- in variable assigned to the message being sent via the email api, for example - `const msg = {}`, add among the comma-separated elements:<br>
+
+  `attachments: [`<br>
+  &emsp;`{`<br>
+  &emsp;&emsp;`content: variable name from step 3,`<br>
+  &emsp;&emsp;`filename: "name of file in here",`<br>
+  &emsp;&emsp;`type: "application/file extension here",`<br> &emsp;&emsp;`disposition: "attachment",`<br>
+  &emsp;`},`<br>
+  &emsp;`{`<br>
+  &emsp;&emsp;`content: next variable name from step 3,`<br>
+  &emsp;&emsp;`filename: "next name of file in here",`<br>
+  &emsp;&emsp;`type: "application/next file extension here",`<br>
+  &emsp;&emsp;`disposition: "attachment",`<br>
+  &emsp;`},`
