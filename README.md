@@ -4,6 +4,8 @@
 
 ##### [epic apis data flow](epicapis-dfd.pdf)
 
+###### **note:** this is more accurately a process/data flow diagram
+
 ##### [frontend github repo](https://github.com/LaTonia-Mertica/epicapis)
 
 ##### [backend github repo](https://github.com/LaTonia-Mertica/epicapis-db)
