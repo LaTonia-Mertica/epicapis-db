@@ -103,9 +103,60 @@ to pass the port directly simply do not assign the port to a variable. instead, 
 
 ### **WIRING BACKEND TO FRONTEND**
 
+` const msg =`<br>
+&emsp;`{`<br>
+&emsp;&emsp;`to: req.body.email,`<br>
+&emsp;&emsp;`from: "from email address in here",`<br>
+&emsp;&emsp;`subject: "subject line content in here",`<br>
+&emsp;&emsp;`html,`<br>
+&emsp;&emsp;... additional elements in here as needed (ie email attachments)<br>
+&emsp;`};`
+
+#### **FOLLOWED BY CODE BELOW**
+
+`(async () => {`<br>
+&emsp;`try {`<br>
+&emsp;&emsp;`await sgMail.send(msg);`<br>
+&emsp;&emsp;`console.log("Email Sent!");`<br>
+&emsp;&emsp;`res.send({ success: true });`<br>
+&emsp;`} catch (error) {`<br>
+&emsp;&emsp;`res.send({ success: false });`<br>
+&emsp;&emsp;`console.error(error);`<br>
+
+&emsp;&emsp;`if (error.response) {` <br>
+&emsp;&emsp;&emsp;`console.error(error.response.body);` <br>
+&emsp;&emsp;`}` <br>
+&emsp;`}` <br>
+`})();`
+
 <br>
 
-### **BASIC STRUCTURE: ACCESS DATA TO INCLUDE IN EMAIL API SUBMISSION**
+### **BASIC STRUCTURE: ACCESS DATA FOR EMAIL**
+
+##### **note:**<br>
+
+##### 1. content in assignment for html variable must be in backticks,<br>
+
+##### 2) drilling in to specific key beyond first two levels may be required,<br>
+
+##### 3) include html formatting before and/or after content as desired
+
+<br>
+
+let html = `intro content for email body as desired`;
+
+`if (req.body.variableNameHere.keyInVariableHere) {`<br>
+&emsp;html += `${req.body.variableNameHere.keyInVariableHere`;<br> `} else {`<br> html += `...`; <br>
+`}`
+
+<br>
+
+### **BASIC STRUCTURE: ACCESS DATA FOR EMAIL (w/DATA)**
+
+let html = `<i>Thank you for visiting</i>&nbsp;<strong>EPIC APIS</strong>.&nbsp;<i>Selections submitted are below</i>:<br>`;<br>
+
+`if (req.body.selections.beautifulEntry) {`<br>
+&emsp;html += `<br><br><strong>Beautiful Code: </strong> ${req.body.selections.beautifulEntry.beautifulEntry}<br>`;<br> `} else {`<br> html += `<br><strong>Beautiful Code: </strong>Access the 'Beautiful Code' modal at Epic Apis online and add your own definition (<strong>note:</strong> you may adopt or adapt the default definition).<br>`;<br> `}`
 
 <br>
 
