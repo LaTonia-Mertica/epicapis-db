@@ -37,11 +37,15 @@
 
   - sgMail.setApiKey(apiKey);
 
+  <br>
+
 ### **SENDGRID**
 
 an email application programming interface. also known as Twilio SendGrid.
 
 per wikipedia, "_SendGrid provides a cloud-based service that assists businesses with email delivery. The service manages various types of email including shipping notifications, friend requests, sign-up confirmations, and email newsletters. It also handles Internet service provider (ISP) monitoring, domain keys, sender policy framework (SPF), and feedback loops. Additionally, the company provides link tracking, open rate reporting. It also allows companies to track email opens, unsubscribes, bounces, and spam reports. Beginning in 2012, the company integrated SMS, voice, and push notification abilities to its service through a partnership with Twilio._"
+
+  <br>
 
 ### **BASIC SENDGRID STRUCTURE**
 
@@ -68,6 +72,23 @@ server.post("/sendEmail", (req, res) => {
 });
 ```
 
+  <br>
+
+### **BASIC GENERAL REGEX TO CHECK EMAIL STRUCTURE**
+
+`/(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)_|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])_")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]\*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
+`
+
+<br>
+
+### **RAILROAD DIAGRAM OF ABOVE REGEX**
+
+<img src="General-Email-Regex-Railroad-Diagram.png" />
+
+###### diagram source: [emailregex.com](https://www.emailregex.com/)
+
+  <br>
+
 ### **PORT: PASS DIRECTLY VERSUS INDIRECTLY**
 
 `let PORT = 3001;` is a bit more code while a cleaner way to pass the port to the node.js server.listen() method. this indirect way of passing the port is helpful for when the port needs to or will change.
@@ -77,6 +98,8 @@ server.post("/sendEmail", (req, res) => {
 to pass the port directly simply do not assign the port to a variable. instead, add the port number as the first parameter in the server.listen() method and in every instance where the port is used. for example, in console.log() if the console log method includes the specific port in the output message.
 
 **example:** `server.listen(3000, () => { console.log("Running On Port " + 3000); });`
+
+  <br>
 
 ### **WIRING BACKEND TO FRONTEND**
 
