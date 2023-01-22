@@ -21,9 +21,6 @@ dfdPath = `epicapis-dfd.pdf`;
 dfdPdf = fs.readFileSync(dfdPath).toString("base64");
 tryPath = `TRY.pdf`;
 tryPdf = fs.readFileSync(tryPath).toString("base64");
-// ADD LOGO AT BOTTOM OF EMAIL
-// logoPath = `epicapis-logo.png`;
-// logoImg = fs.readFileSync(logoPath).toString("base64");
 
 let PORT = 3001;
 
@@ -153,6 +150,7 @@ server.post("/sendEmail", (req, res) => {
     &emsp; - <a href="https://github.com/LaTonia-Mertica/epicapis-db/blob/518bd74acb66e07acd52b4f1db377177b8f74cb9/epicapis-dfd.pdf" style="text-decoration: none">Data Flow</a>, outlining access, relationships between, and user interactions<br>
     &emsp; - <a href="https://github.com/LaTonia-Mertica/epicapis-db/blob/a611e94bc635b1cdfddb259b75ff7c137b024e4e/TRY.pdf" style="text-decoration: none">TRY</a> (an invite), debating possibilities and reasons to embrace code as a culture<br>
     
+    // ADD LOGO AT BOTTOM OF EMAIL
     <img src="data:image/png;base64,${logoBase64}" alt="Epic Apis Logo" width="50%" style="display: block; margin: 0 auto"/> <br><br>`;
   }
 
