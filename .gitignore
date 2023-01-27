@@ -1,4 +1,5 @@
 sendgridkey.js
+recaptchasecret.js
 
 node_modules
 .DS_Store

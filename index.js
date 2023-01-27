@@ -1,26 +1,26 @@
-const express = require("express");
+import express from "express";
+import cors from "cors";
+import bodyParser from "body-parser";
+import apiKey from "./sendgridkey.js";
+import sgMail from "@sendgrid/mail";
+import logoBase64 from "./logoBase64.js";
+import fs from "fs";
+import fetch from "node-fetch";
+import recaptchasecret from "./recaptchasecret.js";
+
 const server = express();
-
-const cors = require("cors");
 server.use(cors());
-
-const bodyParser = require("body-parser");
 server.use(bodyParser.json());
 
-const apiKey = require("./sendgridkey");
-const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(apiKey);
 
-const logoBase64 = require("./logoBase64");
-
 // ADD ATTACHMENT(S) TO EMAIL
-const fs = require("fs");
-summaryPath = `epic-apis-summary.pdf`;
-summaryPdf = fs.readFileSync(summaryPath).toString("base64");
-dfdPath = `epicapis-dfd.pdf`;
-dfdPdf = fs.readFileSync(dfdPath).toString("base64");
-tryPath = `TRY.pdf`;
-tryPdf = fs.readFileSync(tryPath).toString("base64");
+const summaryPath = `epic-apis-summary.pdf`;
+const summaryPdf = fs.readFileSync(summaryPath).toString("base64");
+const dfdPath = `epicapis-dfd.pdf`;
+const dfdPdf = fs.readFileSync(dfdPath).toString("base64");
+const tryPath = `TRY.pdf`;
+const tryPdf = fs.readFileSync(tryPath).toString("base64");
 
 let PORT = 3001;
 
@@ -180,14 +180,28 @@ server.post("/sendEmail", (req, res) => {
       },
     ],
   };
-
   (async () => {
     try {
-      await sgMail.send(msg);
-      console.log("Email Sent!");
-      res.send({ success: true });
+      const remoteip =
+        req.headers["x-forwarded-for"] || req.socket.remoteAddress;
+
+      const recaptchaResponse = await fetch(
+        `https://www.google.com/recaptcha/api/siteverify?secret=${recaptchasecret}&response=${req.body.token}&remoteip=${remoteip}`,
+        {
+          method: "POST",
+        }
+      );
+      const recaptchaResult = await recaptchaResponse.json();
+
+      if (recaptchaResult.success) {
+        await sgMail.send(msg);
+        console.log("Email Sent!");
+        res.send({ success: true });
+      } else {
+        res.send({ success: false, error: "Recaptcha Failed" });
+      }
     } catch (error) {
-      res.send({ success: false });
+      res.send({ success: false, error: "Something Went Wrong" });
       console.error(error);
 
       if (error.response) {
@@ -201,4 +215,4 @@ server.listen(PORT, () => {
   console.log("Running On Port " + PORT);
 });
 
-module.exports = server;
+export default server;
