@@ -187,3 +187,11 @@ let html = `<i>Thank you for visiting</i>&nbsp;<strong>EPIC APIS</strong>.&nbsp;
   &emsp;&emsp;`type: "application/next file extension here",`<br>
   &emsp;&emsp;`disposition: "attachment",`<br>
   &emsp;`},`
+
+  <br>
+
+##### **unfortunate note:** gmail/google refuses to display custom logo in the bottom of emails recipients receive from epic apis. this form of censorship, implemented under the guise of blind 'safety' measure(s), is an example of a tech giant disregarding consumer rights **and** assuming they wholly define intellect.
+
+<br>
+
+##### i've been gradually leaving gmail/google, and offer the following article for insight from another like-minded individual: [How I Fully Quit Google (And You Can, Too)](https://medium.com/s/story/how-i-fully-quit-google-and-you-can-too-4c2f3f85793a)
