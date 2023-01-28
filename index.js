@@ -19,7 +19,7 @@ const summaryPath = `epic-apis-summary.pdf`;
 const summaryPdf = fs.readFileSync(summaryPath).toString("base64");
 const dfdPath = `epicapis-dfd.pdf`;
 const dfdPdf = fs.readFileSync(dfdPath).toString("base64");
-const tryPath = `TRY.pdf`;
+const tryPath = `try.pdf`;
 const tryPdf = fs.readFileSync(tryPath).toString("base64");
 
 let PORT = 3001;
@@ -148,7 +148,7 @@ server.post("/sendEmail", (req, res) => {
     html += `<br><br><i>Noteworthy features of</i>&nbsp;<strong>EPIC APIS</strong>&nbsp;<i>are accessible, for your convenience, per <strong>1)</strong> attachment to this email and <strong>2)</strong> Github via link below</i>:<br><br>
     &emsp; - <a href="https://github.com/LaTonia-Mertica/epicapis-db/blob/8cc3c4a86c1e82b8820450c75c8812725f7b675a/epic-apis-summary.pdf" style="text-decoration: none">Summary</a>, detailing the vision and journey behind the ambitious creation of EA<br>
     &emsp; - <a href="https://github.com/LaTonia-Mertica/epicapis-db/blob/518bd74acb66e07acd52b4f1db377177b8f74cb9/epicapis-dfd.pdf" style="text-decoration: none">Data Flow</a>, outlining access, relationships between, and user interactions<br>
-    &emsp; - <a href="https://github.com/LaTonia-Mertica/epicapis-db/blob/a611e94bc635b1cdfddb259b75ff7c137b024e4e/TRY.pdf" style="text-decoration: none">TRY</a> (an invite), debating possibilities and reasons to embrace code as a culture<br>
+    &emsp; - <a href="https://github.com/LaTonia-Mertica/epicapis-db/blob/a611e94bc635b1cdfddb259b75ff7c137b024e4e/try.pdf" style="text-decoration: none">TRY</a> (an invite), debating possibilities and reasons to embrace code as a culture<br>
 
     <br>
     &emsp; - <a href="https://github.com/LaTonia-Mertica/epicapis" style="text-decoration: none">readme: epic apis</a>, consisting of frontend code and collaterals<br>
