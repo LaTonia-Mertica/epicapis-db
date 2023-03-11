@@ -6,7 +6,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx nodemon index.js"
+    "start": "npx nodemon index.js",
+    "deploy": "rsync --delete --delete-after --exclude=.git --exclude=node_modules -avzhe ssh /Users/sheppardwalker/Documents/epicapis-db/ root@epicapis.latoniamertica.dev:/root/epicapis-backend/ && ssh root@epicapis.latoniamertica.dev 'cd epicapis-backend && npm i && pm2 restart index'"
   },
   "keywords": [],
   "author": "",

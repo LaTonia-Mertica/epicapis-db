@@ -7,6 +7,12 @@ import logoBase64 from "./logoBase64.js";
 import fs from "fs";
 import fetch from "node-fetch";
 import recaptchasecret from "./recaptchasecret.js";
+import path from "path";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const server = express();
 server.use(cors());
@@ -15,11 +21,11 @@ server.use(bodyParser.json());
 sgMail.setApiKey(apiKey);
 
 // ADD ATTACHMENT(S) TO EMAIL
-const summaryPath = `epic-apis-summary.pdf`;
+const summaryPath = path.resolve(__dirname, `./epic-apis-summary.pdf`);
 const summaryPdf = fs.readFileSync(summaryPath).toString("base64");
-const dfdPath = `epicapis-dfd.pdf`;
+const dfdPath = path.resolve(__dirname, `./epicapis-dfd.pdf`);
 const dfdPdf = fs.readFileSync(dfdPath).toString("base64");
-const tryPath = `try.pdf`;
+const tryPath = path.resolve(__dirname, `./try.pdf`);
 const tryPdf = fs.readFileSync(tryPath).toString("base64");
 
 let PORT = 3001;
@@ -216,7 +222,7 @@ server.post("/sendEmail", (req, res) => {
   })();
 });
 
-server.listen(PORT, () => {
+server.listen(PORT, "0.0.0.0", () => {
   console.log("Running On Port " + PORT);
 });
 
