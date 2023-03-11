@@ -1,5 +1,7 @@
 # **EPIC APIS DATABASE**
 
+[VISIT EPIC APIS LIVE](https://epicapis.latoniamertica.dev/)
+
 ##### [epic apis summary](epic-apis-summary.pdf)
 
 ##### [epic apis data flow](epicapis-dfd.pdf)
@@ -36,6 +38,10 @@
 - in app/index/server file, _pass api key_ per sendgrid api documentation
 
   - sgMail.setApiKey(apiKey);
+
+  <br>
+
+  ##### **note:** the requires method was replaced with the export/import method aka edited from common JS to ES5/ES6
 
   <br>
 
@@ -85,7 +91,7 @@ server.post("/sendEmail", (req, res) => {
 
 <img src="General-Email-Regex-Railroad-Diagram.png" />
 
-###### diagram source: [emailregex.com](https://www.emailregex.com/)
+###### diagram source: emailregex.com
 
   <br>
 
@@ -170,6 +176,8 @@ let html = `<i>Thank you for visiting</i>&nbsp;<strong>EPIC APIS</strong>.&nbsp;
   **3)** declare variable assigned to `fs.readFileSync(step 2 variable here).toString("base64");`<br>
 
   ##### **note:** repeat steps 2-3 for each file being attached
+
+  ##### **also note:** code refactor may be needed per deploy
 
   <br>
 
