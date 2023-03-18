@@ -205,3 +205,26 @@ let html = `<i>Thank you for visiting</i>&nbsp;<strong>EPIC APIS</strong>.&nbsp;
 <br>
 
 ##### i've been gradually leaving gmail/google, and offer the following article for insight from another like-minded individual: [How I Fully Quit Google (And You Can, Too)](https://medium.com/s/story/how-i-fully-quit-google-and-you-can-too-4c2f3f85793a)
+
+<br>
+
+### **DOCKER IMAGE / EPIC APIS DB CONTAINER**
+
+1. visit [latoniamertica on docker hub](https://hub.docker.com/u/latoniamertica)
+2. click on latoniamertica/epicapis-db
+3. look to the right for Docker Pull Command
+4. copy the Docker Pull Command
+5. in your termina/CLI, paste the Docker Pull Command
+6. the Docker Pull Command will be formatted as `docker pull` followed by the image name. for example, `docker pull latoniamertica/epicapis-db`
+   <br>
+
+##### **note:** you can skip steps 1 through 4 if you know the image name
+
+<br>
+
+7. run the command `docker run -p 3001:3001 -it latoniamertica/epicapis-db`. if successful, the terminal/CLI will note the port (in this example port 3001) where the server is running
+   <br>
+
+##### **more notes:** regarding ports, the first 3001 in 3001:3001 may be changed to specify a port on your local device (aka your Mac). however, the second 3001 in 3001:3001 must match what the author of the container listed for the container runtime port (in this case 3001).
+
+<br>
